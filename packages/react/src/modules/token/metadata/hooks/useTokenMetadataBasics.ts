@@ -16,7 +16,7 @@ const TOKEN_BASICS_CARD_ID = 'admin:erc1155-token-metadata-basics';
 
 export const useTokenMetadataBasics = ({ chainId, contractAddress }: Props) => {
   const {
-    data: { configValues },
+    data: { offChainConfigs: configValues },
   } = useDiamondContext();
 
   const {

@@ -26,7 +26,7 @@ type DiamondContextValue = {
     contractFacets?: FacetManifest[];
     contractInterfaces?: EIP165InterfaceID[];
 
-    configValues?: Record<string, any>;
+    offChainConfigs?: Record<string, any>;
     proposedCalls?: ContractCall[];
     proposedCallsData?: TransactionData;
   };
@@ -43,7 +43,7 @@ type DiamondContextValue = {
     smartContractError?: string | Error | null;
   };
 
-  setConfigValues: React.Dispatch<React.SetStateAction<Record<string, any>>>;
+  setOffChainConfigs: React.Dispatch<React.SetStateAction<Record<string, any>>>;
   setProposedCalls: React.Dispatch<React.SetStateAction<ContractCall[]>>;
   setProposedCallsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setProposedCallsError: React.Dispatch<
@@ -86,7 +86,7 @@ export const DiamondProvider = ({
   const [listeners, setListeners] = useState<
     Record<string, TransactionListener>
   >({});
-  const [configValues, setConfigValues] = useState<Record<string, any>>();
+  const [offChainConfigs, setOffChainConfigs] = useState<Record<string, any>>();
   const [contractFacets, setContractFacets] = useState<FacetManifest[]>();
   const [proposedCalls, setProposedCalls] = useState<ContractCall[]>([]);
   const [proposedCallsData, setProposedCallsData] = useState<TransactionData>();
@@ -155,11 +155,11 @@ export const DiamondProvider = ({
    * Set config values based on off-chain diamond data
    */
   useEffect(() => {
-    if (configValues !== undefined || !diamond?.config) {
+    if (offChainConfigs !== undefined || !diamond?.config) {
       return;
     }
-    setConfigValues(diamond.config);
-  }, [configValues, diamond]);
+    setOffChainConfigs(diamond.config);
+  }, [offChainConfigs, diamond]);
 
   /**
    * Set supported EIP165 interfaces based on current facets
@@ -215,7 +215,7 @@ export const DiamondProvider = ({
       diamond,
       smartContract,
 
-      configValues,
+      offChainConfigs,
       contractFacets,
       contractInterfaces,
       proposedCalls,
@@ -226,7 +226,7 @@ export const DiamondProvider = ({
 
     error: { proposedCallsError, diamondError, smartContractError },
 
-    setConfigValues,
+    setOffChainConfigs,
     setProposedCalls,
 
     setProposedCallsLoading,

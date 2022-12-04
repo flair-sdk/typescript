@@ -34,7 +34,7 @@ export const useERC1155TokensByCollection = ({
     });
 
   const {
-    data: { configValues },
+    data: { offChainConfigs: configValues },
   } = useDiamondContext();
 
   const tokensERC1155TokensCard = configValues?.[ADMIN_ERC1155_TOKENS_CARD_ID]

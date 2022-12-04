@@ -39,7 +39,7 @@ type Props = {
 
 export const ERC721TieredSalesSelector = (props: Props = {}) => {
   const {
-    data: { chainId, configValues },
+    data: { chainId, offChainConfigs: configValues },
   } = useDiamondContext();
 
   const chainInfo = useChainInfo(chainId);
